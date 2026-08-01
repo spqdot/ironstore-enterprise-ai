@@ -1,46 +1,21 @@
-# ==========================
 # Python
-# ==========================
-
 .venv/
 venv/
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+*.pyc
 
-# Environment variables
+# Environment variables / secrets
 .env
+.env.*
+!.env.example
 
-# ==========================
-# VS Code
-# ==========================
-
-.vscode/
-
-# ==========================
-# macOS
-# ==========================
-
-.DS_Store
-
-# ==========================
-# Logs
-# ==========================
-
-*.log
-
-# ==========================
-# Frontend (React/Vite)
-# ==========================
-
+# Node
 frontend/node_modules/
 frontend/dist/
 
-# ==========================
-# Testing / Cache
-# ==========================
+# IDE / OS
+.vscode/
+.DS_Store
+Thumbs.db
 
-.pytest_cache/
-.mypy_cache/
-.coverage
+backend/ingest_backup.py
