@@ -1,30 +1,211 @@
+/* Main application */
 .App {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
-h1 {
-  color: #2c3e50;
-}
-
-textarea {
+/* Chat application */
+.chat-container {
   width: 100%;
-  padding: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Main heading */
+.chat-container h1 {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 30px;
+  color: #1f2937;
+}
+
+/* Question input */
+.chat-container textarea {
+  width: 100%;
+  min-height: 100px;
+  box-sizing: border-box;
+  resize: vertical;
+
+  padding: 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-container textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+/* Ask AI button */
+.chat-container button {
+  margin-top: 14px;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #4f46e5;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+.chat-container button:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.chat-container button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.chat-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   MESSAGE AREA
+   ========================= */
+
+.message-row {
+  display: flex;
+  margin-top: 28px;
+}
+
+.user-row {
+  justify-content: flex-end;
+}
+
+.assistant-row {
+  justify-content: flex-start;
+}
+
+.message {
+  max-width: 75%;
+  padding: 15px 18px;
+  border-radius: 16px;
+  line-height: 1.6;
+}
+
+.user-message {
+  background: #4f46e5;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+
+.assistant-message {
+  background: #f3f4f6;
+  color: #1f2937;
+  border-bottom-left-radius: 5px;
+}
+
+.message-label {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.message-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   SOURCES
+   ========================= */
+
+.sources-container {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sources-container h3 {
+  margin: 0 0 14px;
+  color: #374151;
   font-size: 16px;
 }
 
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
+.sources-list {
+  display: grid;
+  gap: 10px;
 }
 
-button:hover {
-  background-color: #e6e6e6;
+.source-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
 }
 
-hr {
-  margin: 20px 0;
+.source-icon {
+  font-size: 22px;
+}
+
+.source-name {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.source-page {
+  margin-top: 3px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
+  .App {
+    padding: 15px;
+  }
+
+  .chat-container {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .chat-container h1 {
+    font-size: 23px;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+
+  .chat-container button {
+    width: 100%;
+  }
 }

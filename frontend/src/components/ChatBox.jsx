@@ -1,54 +1,68 @@
 import { useState } from "react";
 import { sendQuestion } from "../services/api";
+import Message from "./Message";
+import SourceList from "./SourceList";
 
 function ChatBox() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (!question.trim()) return;
 
-    const response = await sendQuestion(question);
+    setLoading(true);
+    setAnswer("");
+    setSources([]);
 
-    setAnswer(response.answer);
-    setSources(response.sources);
+    try {
+      const response = await sendQuestion(question);
+
+      setAnswer(response.answer);
+      setSources(response.sources);
+    } catch (error) {
+      setAnswer("Something went wrong.");
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div>
-      <h1>IronStore Enterprise AI Assistant</h1>
+    <div className="chat-container">
+
+      <h1>🤖 IronStore Enterprise AI Assistant</h1>
 
       <textarea
         rows="4"
-        cols="60"
-        placeholder="Ask a question..."
+        placeholder="Ask a question about company policies..."
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
       />
 
-      <br />
-      <br />
-
-      <button onClick={handleSubmit}>
-        Ask AI
+      <button
+        onClick={handleSubmit}
+        disabled={loading}
+      >
+        {loading ? "Thinking..." : "Ask AI"}
       </button>
 
-      <hr />
+      {question && (
+        <Message
+          role="user"
+          text={question}
+        />
+      )}
 
-      <h2>Answer</h2>
+      {answer && (
+        <Message
+          role="assistant"
+          text={answer}
+        />
+      )}
 
-      <p>{answer}</p>
+      <SourceList sources={sources} />
 
-      <h2>Sources</h2>
-
-      <ul>
-        {sources.map((item, index) => (
-          <li key={index}>
-            {item.source} (Page {item.page})
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
