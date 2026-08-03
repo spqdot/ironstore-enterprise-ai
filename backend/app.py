@@ -17,6 +17,7 @@ app.add_middleware(
         "http://localhost:5175",
         "http://localhost:5176",
         "https://ironstore-enterprise-ai-79ya.vercel.app",
+        "https://ironstore-enterprise-ai-qmql-25khb8dq3-spqdots-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
